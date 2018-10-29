@@ -104,39 +104,29 @@ const styles = {
 };
 
 class AutoRotatingCarousel extends Component {
-    state = {
-        slideIndex: this.props.index
-    };
-
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.decreaseIndex = this.decreaseIndex.bind(this);
+        this.increaseIndex = this.increaseIndex.bind(this);
+    }
     handleContentClick = e => e.stopPropagation() || e.preventDefault();
 
     handleChange = slideIndex => {
-        this.setState(
-            {
-                slideIndex
-            },
-            this.onChange(slideIndex)
-        );
+        this.setSlideIndex(slideIndex);
+        this.onChange(slideIndex);
     };
 
     decreaseIndex() {
-        const slideIndex = this.state.slideIndex - 1;
-        this.setState(
-            {
-                slideIndex
-            },
-            this.onChange(slideIndex)
-        );
+        const slideIndex = this.props.slideIndex - 1;
+        this.props.setSlideIndex(slideIndex);
+        this.onChange(slideIndex);
     }
 
     increaseIndex() {
-        const slideIndex = this.state.slideIndex + 1;
-        this.setState(
-            {
-                slideIndex
-            },
-            this.onChange(slideIndex)
-        );
+        const slideIndex = this.props.slideIndex + 1;
+        this.props.setSlideIndex(slideIndex);
+        this.onChange(slideIndex);
     }
 
     onChange(slideIndex) {
@@ -174,7 +164,7 @@ class AutoRotatingCarousel extends Component {
                 autoplay={open && autoplay && hasMultipleChildren}
                 className={classes.carousel}
                 containerStyle={{ height: '100%', ...containerStyle }}
-                index={this.state.slideIndex}
+                index={this.props.slideIndex}
                 interval={interval}
                 onChangeIndex={this.handleChange}
                 slideClassName={classes.slide}
@@ -246,7 +236,7 @@ class AutoRotatingCarousel extends Component {
                                     <Dots
                                         count={children.length}
                                         index={modulo(
-                                            this.state.slideIndex,
+                                            this.props.slideIndex,
                                             children.length
                                         )}
                                         className={classNames(classes.dots, {
@@ -304,6 +294,7 @@ AutoRotatingCarousel.defaultProps = {
 };
 
 AutoRotatingCarousel.propTypes = {
+    slideIndex: PropTypes.number,
     /** If `false`, the auto play behavior is disabled. */
     autoplay: PropTypes.bool,
     /** Properties applied to the [Button](https://material-ui.com/api/button/) element. */
