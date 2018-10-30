@@ -127,7 +127,6 @@ class AutoRotatingCarousel extends Component {
 
     increaseIndex() {
         const slideIndex = this.props.slideIndex + 1;
-        s;
         this.props.setSlideIndex(slideIndex);
         this.onChange(slideIndex);
     }
