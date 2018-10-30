@@ -107,8 +107,9 @@ class AutoRotatingCarousel extends Component {
     state = {
         slideIndex: 0
     };
-    componentDidMount() {
-        this.setState({ slideIndex: this.props.slideIndex });
+    componentWillReceiveProps(props) {
+        console.log('received props', props.slideIndex);
+        this.setState({ slideIndex: props.slideIndex });
     }
     handleContentClick = e => e.stopPropagation() || e.preventDefault();
 
