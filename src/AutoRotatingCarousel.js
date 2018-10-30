@@ -106,16 +106,18 @@ const styles = {
 class AutoRotatingCarousel extends Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.decreaseIndex = this.decreaseIndex.bind(this);
-        this.increaseIndex = this.increaseIndex.bind(this);
+        this.handleChange = this.handleChange;
+        this.decreaseIndex = this.decreaseIndex;
+        this.increaseIndex = this.increaseIndex;
+        console.log(this.props.slideIndex, 'constructor');
     }
     handleContentClick = e => e.stopPropagation() || e.preventDefault();
 
-    handleChange = slideIndex => {
+    handleChange(slideIndex) {
+        console.log(slideIndex, 'handleChange');
         this.props.setSlideIndex(slideIndex);
         this.onChange(slideIndex);
-    };
+    }
 
     decreaseIndex() {
         const slideIndex = this.props.slideIndex - 1;
@@ -125,6 +127,7 @@ class AutoRotatingCarousel extends Component {
 
     increaseIndex() {
         const slideIndex = this.props.slideIndex + 1;
+        s;
         this.props.setSlideIndex(slideIndex);
         this.onChange(slideIndex);
     }
@@ -150,7 +153,8 @@ class AutoRotatingCarousel extends Component {
             ModalProps,
             open,
             onClose,
-            onStart
+            onStart,
+            slideIndex
         } = this.props;
         const landscape = mobile && landscapeProp;
         const transitionDuration = {
@@ -164,7 +168,7 @@ class AutoRotatingCarousel extends Component {
                 autoplay={open && autoplay && hasMultipleChildren}
                 className={classes.carousel}
                 containerStyle={{ height: '100%', ...containerStyle }}
-                index={this.props.slideIndex}
+                index={slideIndex}
                 interval={interval}
                 onChangeIndex={this.handleChange}
                 slideClassName={classes.slide}
@@ -236,7 +240,7 @@ class AutoRotatingCarousel extends Component {
                                     <Dots
                                         count={children.length}
                                         index={modulo(
-                                            this.props.slideIndex,
+                                            slideIndex,
                                             children.length
                                         )}
                                         className={classNames(classes.dots, {
