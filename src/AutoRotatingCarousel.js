@@ -107,8 +107,8 @@ class AutoRotatingCarousel extends Component {
     state = {
         slideIndex: 0
     };
-    componentWillReceiveProps(props) {
-        this.setState({ slideIndex: props.slideIndex });
+    componentDidMount() {
+        this.setState({ slideIndex: this.props.slideIndex });
     }
     handleContentClick = e => e.stopPropagation() || e.preventDefault();
 
@@ -170,7 +170,7 @@ class AutoRotatingCarousel extends Component {
             exit: duration.leavingScreen
         };
         const hasMultipleChildren = children.length != null;
-
+        console.log(this.state.slideIndex, 'autorotating');
         const carousel = (
             <Carousel
                 autoplay={open && autoplay && hasMultipleChildren}
