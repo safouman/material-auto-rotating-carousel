@@ -106,17 +106,17 @@ const styles = {
 class AutoRotatingCarousel extends Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange;
-        this.decreaseIndex = this.decreaseIndex;
-        this.increaseIndex = this.increaseIndex;
+        this.handleChange = this.handleChange.bind(this);
+        this.decreaseIndex = this.decreaseIndex.bind(this);
+        this.increaseIndex = this.increaseIndex.bind(this);
         console.log(this.props.slideIndex, 'constructor');
     }
     handleContentClick = e => e.stopPropagation() || e.preventDefault();
 
     handleChange(slideIndex) {
-        console.log(slideIndex, 'handleChange');
         this.props.setSlideIndex(slideIndex);
         this.onChange(slideIndex);
+        console.log(this.props.slideIndex, 'handlechange');
     }
 
     decreaseIndex() {
@@ -239,7 +239,7 @@ class AutoRotatingCarousel extends Component {
                                     <Dots
                                         count={children.length}
                                         index={modulo(
-                                            slideIndex,
+                                            this.props.slideIndex,
                                             children.length
                                         )}
                                         className={classNames(classes.dots, {
