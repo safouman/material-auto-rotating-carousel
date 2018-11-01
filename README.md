@@ -1,5 +1,5 @@
 # Material AutoRotatingCarousel
-
+** Fork updates: Now you can pass the slideIndex as a prop to the component !
 [![Build Status](https://travis-ci.org/TeamWertarbyte/material-auto-rotating-carousel.svg?branch=next)](https://travis-ci.org/TeamWertarbyte/material-auto-rotating-carousel)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -33,7 +33,7 @@ npm i --save react-swipeable-views
 |onChange        | `function` |            | Fired when the index changed. Returns current index.
 |onClose         | `function` |            | Fired when the gray background of the popup is pressed when it is open.
 |onStart         | `function` |            | Fired when the user clicks the getting started button.
-
+|slideIndex      | `integer`  |            | Number of the slide to start from 
 ### Slide Properties
 
 |Name                   |Type       |Default      |Description
