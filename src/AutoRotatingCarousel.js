@@ -62,7 +62,7 @@ const styles = {
         height: '100%'
     },
     dots: {
-        paddingTop: 36,
+        marginTop: 36,
         margin: '0 auto'
     },
     dotsMobile: {

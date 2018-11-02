@@ -83,7 +83,7 @@ const styles = {
         color: '#fff'
     },
     footer: {
-        marginTop: 0,
+        marginTop: 3,
         width: '100%',
         position: 'relative',
         textAlign: 'center'
