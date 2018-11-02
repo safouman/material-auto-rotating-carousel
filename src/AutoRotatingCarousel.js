@@ -108,7 +108,6 @@ class AutoRotatingCarousel extends Component {
         slideIndex: 0
     };
     componentWillReceiveProps(props) {
-        console.log('received props', props.slideIndex);
         this.setState({ slideIndex: props.slideIndex });
     }
     handleContentClick = e => e.stopPropagation() || e.preventDefault();
@@ -151,19 +150,18 @@ class AutoRotatingCarousel extends Component {
     render() {
         const {
             autoplay,
-            ButtonProps,
+
             children,
             classes,
             containerStyle,
             hideArrows,
             interval,
-            label,
+
             landscape: landscapeProp,
             mobile,
             ModalProps,
             open,
-            onClose,
-            onStart
+            onClose
         } = this.props;
         const landscape = mobile && landscapeProp;
         const transitionDuration = {
@@ -236,15 +234,6 @@ class AutoRotatingCarousel extends Component {
                                     [classes.footerMobileLandscape]: landscape
                                 })}
                             >
-                                {label && (
-                                    <Button
-                                        variant="raised"
-                                        onClick={onStart}
-                                        {...ButtonProps}
-                                    >
-                                        {label}
-                                    </Button>
-                                )}
                                 {hasMultipleChildren && (
                                     <Dots
                                         count={children.length}
@@ -309,16 +298,14 @@ AutoRotatingCarousel.defaultProps = {
 AutoRotatingCarousel.propTypes = {
     /** If `false`, the auto play behavior is disabled. */
     autoplay: PropTypes.bool,
-    /** Properties applied to the [Button](https://material-ui.com/api/button/) element. */
-    ButtonProps: PropTypes.object,
+
     /** Object for customizing the CSS classes. */
     classes: PropTypes.object.isRequired,
     /** Override the inline-styles of the carousel container. */
     containerStyle: PropTypes.object,
     /** Delay between auto play transitions (in ms). */
     interval: PropTypes.number,
-    /** Button text. If not supplied, the button will be hidden. */
-    label: PropTypes.string,
+
     /** If `true`, slide will adjust content for wide mobile screens. */
     landscape: PropTypes.bool,
     /** If `true`, the screen width and height is filled. */
@@ -329,9 +316,7 @@ AutoRotatingCarousel.propTypes = {
     onChange: PropTypes.func,
     /** Fired when the gray background of the popup is pressed when it is open. */
     onClose: PropTypes.func,
-    /** Fired when the user clicks the getting started button. */
-    onStart: PropTypes.func,
-    /** Controls whether the AutoRotatingCarousel is opened or not. */
+
     open: PropTypes.bool,
     /** If `true`, the left and right arrows are hidden in the desktop version. */
     hideArrows: PropTypes.bool
