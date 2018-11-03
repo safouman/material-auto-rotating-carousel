@@ -169,7 +169,7 @@ class AutoRotatingCarousel extends Component {
             exit: duration.leavingScreen
         };
         const hasMultipleChildren = children.length != null;
-        console.log(this.state.slideIndex, 'autorotating');
+
         const carousel = (
             <Carousel
                 autoplay={open && autoplay && hasMultipleChildren}
